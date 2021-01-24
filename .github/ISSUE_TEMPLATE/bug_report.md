@@ -2,40 +2,34 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: 'bug'
 assignees: ''
-
 ---
 
-Issue tracker is **ONLY** used for reporting bugs. New features should be discussed on our slack channel. Please use [stackoverflow](https://stackoverflow.com) for supporting issues.
+<!-- Provide a general summary of the issue in the title above -->
 
-<!--- Provide a general summary of the issue in the Title above -->
+## Expected Behavior
 
-## Expected Behaviour
-<!--- Tell us what should happen -->
+<!-- Tell us what should happen -->
 
-## Current Behaviour
-<!--- Tell us what happens instead of the expected behaviour -->
+## Actual Behavior
 
-## Possible Solution
-<!--- Not obligatory, but suggest a fix/reason for the bug, -->
+<!-- Tell us what happens instead of the expected behaviour -->
 
-## Steps to Reproduce
-<!--- Provide a link to a live example, or an unambiguous set of steps to -->
-<!--- reproduce this bug. Include code to reproduce, if relevant -->
-1.
-2.
-3.
-4.
+## Steps to Reproduce the Problem
 
-## Context (Environment)
-<!--- How has this issue affected you? What are you trying to accomplish? -->
-<!--- Providing context helps us come up with a solution that is most useful in the real world -->
+<!-- Where possible provide commands and/or sample code -->
+<!-- Link to a gist or repo where applicable -->
 
-<!--- Provide a general summary of the issue in the Title above -->
+1. Step 1
+1. Step 2
+1. ...
 
-## Detailed Description
-<!--- Provide a detailed description of the change or addition you are proposing -->
+## Environment Details
 
-## Possible Implementation
-<!--- Not obligatory, but suggest an idea for implementing addition or change -->
+<!-- Complete as much as is applicable -->
+
+- Version: <!-- version where applicable -->
+- Operating System: <!-- Windows, Linux with versions -->
+- Platform: <!-- e.g. Docker, kubernetes, cloud etc -->
+- Other Components: <!-- Details of other components e.g. browser  -->

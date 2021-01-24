@@ -6,7 +6,7 @@ Contributions to this project are welcome of course, otherwise it wouldn't resid
 
 - This is a personal project, it is not maintained by a team or group.
 - It might take a long time for the maintainer(s) to reply to issues or review PRs, they will have have a day jobs & might not have looked at the code for a while.
-- The code here is likely to not be bullet proof & production grade, there might be unit tests missing or other practices missing from the code base.
+- The code here is likely to not be bullet proof & production grade, there might be a lack of unit tests or other practices missing from the code base.
 
 # Contributing
 
