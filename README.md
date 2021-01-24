@@ -1,3 +1,15 @@
+# Meta Instructions - REMOVE THIS PART
+
+After duplicating or using this template
+
+- Remove directories not required
+- Update readme
+- Update makefile, and uncomment suggested commands
+- Update / remove contents of api directory
+- Edit .github/workflows
+- Place code in src
+- Use sample configs for linting and other tools in sample folder
+
 # Project Title
 
 Purpose and description of this project

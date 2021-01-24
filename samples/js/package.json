@@ -1,0 +1,25 @@
+{
+  "name": "change-me",
+  "version": "0.0.1",
+  "description": "Change me",
+  "license": "MIT",
+  "author": {
+    "name": "Ben Coleman",
+    "email": "benc.uk@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benc-uk/change-me"
+  },
+  "scripts": {
+    "lint": "eslint . && prettier --check .",
+    "lint-fix": "eslint . --fix && prettier --write .",
+    "start": "echo 'Not implemented yet'",
+    "serve": "npm start",
+    "test": "echo 'Not implemented yet'"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "prettier": "^2.2.1"
+  }
+}
