@@ -1,6 +1,8 @@
 # 'Thing' API Documentation
 
-This is an example of some API documentation. Put more details here
+This is a boilerplate example of documenting a fake API. It is provided purely as an example of standarised API docs
+
+Put details of real API(s) here, or remove this section if it's not relevant to this project.
 
 ## OpenAPI Spec
 
@@ -20,15 +22,25 @@ DELETE /api/thing/{id}  - Delete thing with id
 
 ### Status Codes
 
-- 200 - On GET, POST and PUT will contain the existing/updated entity
-- 204 - Upon successful deletion
+- 200 - On GET, POST and PUT, body will contain the existing/updated entity in JSON (see below)
+- 204 - Upon successful deletion, no body will be returned
 - 400 - Invalid request, e.g. PUT or POST
 - 404 - The requested {id} was not found, no body will be returned
 - 500 - Something bad happened
 
+JSON error object will be returned on 400 and 500 errors
+
+```json
+{
+  "message": "Description of the error",
+  "component": "Component returning the error",
+  "code": "Internal error code"
+}
+```
+
 ## Entity Schema
 
-The API returns and accepts things with the following entity structure
+The API returns and accepts 'things' with the following entity structure
 [JSON schema is here](./schema.json)
 
 ```ts
