@@ -7,24 +7,25 @@
 #@host = localhost:8000
 
 ### Get something
-GET http://{{host}}/api/foo
+GET http://{{host}}/api/thing
 
 ### Create something
-POST http://{{host}}/api/foo
+POST http://{{host}}/api/thing
 content-type: application/json
 
 {
-  "foo": "bar",
-  "thing": "blah"
+  "title": "An example",
+  "count": 66,
+  "tags": [ "foobar" ]
 }
 
 ### Update something
-PUT http://{{host}}/api/foo/123
+PUT http://{{host}}/api/thing/123
 content-type: application/json
 
 {
-  "thing": "blahblah"
+  "title": "Some new title"
 }
 
 ### Delete something
-DELETE http://{{host}}/api/foo/123
+DELETE http://{{host}}/api/thing/123

@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "https://raw.githubusercontent.com/--change-me--/--change-me--/api/schema.json",
+  "type": "object",
+  "title": "A thing",
+  "description": "This is just a simple example",
+  "required": ["id", "title", "count", "tags"],
+  "properties": {
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "format": "uri",
+      "pattern": "^urn:uuid:",
+      "title": "The unique ID of this thing"
+    },
+    "title": {
+      "$id": "#/properties/title",
+      "type": "string",
+      "title": "The title of this thing"
+    },
+    "count": {
+      "$id": "#/properties/count",
+      "type": "number",
+      "maximum": 8000,
+      "minimum": 0,
+      "title": "The count of things"
+    },
+    "tags": {
+      "$id": "#/properties/tags",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 20,
+      "title": "Some string tags"
+    }
+  }
+}

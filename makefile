@@ -8,7 +8,7 @@
 
 # Most likely want to override these when calling `make image`
 IMAGE_REG ?= ghcr.io
-IMAGE_REPO ?= username/changeme
+IMAGE_REPO ?= change_me
 IMAGE_TAG ?= latest
 IMAGE_PREFIX := $(IMAGE_REG)/$(IMAGE_REPO)
 
@@ -50,5 +50,5 @@ build:  ## Run a local build without a container
 
 
 ################################################################################
-run:  ## Run locally and start all services & components
+run:  ## Run application, used for local development
 	@scripts/run.sh
