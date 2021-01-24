@@ -22,17 +22,13 @@ help:  ## This help message :)
 
 
 ################################################################################
-lint: $(FRONTEND_DIR)/node_modules  ## Lint & format, will not fix but sets exit code on error
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint
-	golangci-lint run $(SERVER_DIR)/...
-	cd $(FRONTEND_DIR); npm run lint
+lint:  ## Lint & format, will not fix but sets exit code on error
+	@echo "Not implemented yet!"
 
 
 ################################################################################
-lint-fix: $(FRONTEND_DIR)/node_modules  ## Lint & format, will try to fix errors and modify code
-	go get github.com/golangci/golangci-lint/cmd/golangci-lint
-	golangci-lint run $(SERVER_DIR)/... --fix 
-	cd $(FRONTEND_DIR); npm run lint-fix
+lint-fix: ## Lint & format, will try to fix errors and modify code
+	@echo "Not implemented yet!"
 
 
 ################################################################################

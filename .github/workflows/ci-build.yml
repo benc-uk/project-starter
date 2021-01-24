@@ -1,15 +1,14 @@
 name: CI Build
 
-#
 # This is a generic CI pipeline that assumes project is to be built as a container image
 # Note. CI build only builds 'latest' image, not a versioned release
 # Note. IMAGE_SECRET must be set
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 env:
   IMAGE_REG: ghcr.io
@@ -34,9 +33,9 @@ jobs:
       - name: Build the container image
         run: make image IMAGE_REPO=$GITHUB_ACTOR/$IMAGE_NAME
 
-      # Only when pushing to master push to IMAGE_REG
+      # Only when pushing to default branch (e.g. master or main), then push image to registry
       - name: Push to container registry
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
-          echo ${{ secrets.IMAGE_SECRET }} | docker login $IMAGE_REG -u $GITHUB_ACTOR --password-stdin
-          make push
+          echo ${{ secrets.REGISTRY_PASSWORD }} | docker login $IMAGE_REG -u $GITHUB_ACTOR --password-stdin
+          make push IMAGE_REPO=$GITHUB_ACTOR/$IMAGE_NAME
