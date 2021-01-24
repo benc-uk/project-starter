@@ -1,0 +1,30 @@
+# ==========================================================================
+# Example API file for use with REST Client for VS Code
+# https://marketplace.visualstudio.com/items?itemName=humao.rest-client
+# ==========================================================================
+
+@host = api.example.net
+#@host = localhost:8000
+
+### Get something
+GET http://{{host}}/api/foo
+
+### Create something
+POST http://{{host}}/api/foo
+content-type: application/json
+
+{
+  "foo": "bar",
+  "thing": "blah"
+}
+
+### Update something
+PUT http://{{host}}/api/foo/123
+content-type: application/json
+
+{
+  "thing": "blahblah"
+}
+
+### Delete something
+DELETE http://{{host}}/api/foo/123

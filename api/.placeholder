@@ -1,0 +1,6 @@
+REMOVE THIS FILE!
+
+This directory should contain anything pertaining to the *external* API, e.g. OpenAPI/Swagger specs, JSON schema files, protocol definition files.
+The actual API implementation should NOT go here
+
+Remove this directory if not required for this project

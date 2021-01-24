@@ -12,13 +12,13 @@ IMAGE_REPO ?= username/changeme
 IMAGE_TAG ?= latest
 IMAGE_PREFIX := $(IMAGE_REG)/$(IMAGE_REPO)
 
-.PHONY: help image push build lint lint-fix
+.PHONY: help image push build run lint lint-fix
 .DEFAULT_GOAL := help
 
 
 ################################################################################
 help:  ## This help message :)
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
 
 ################################################################################
@@ -33,7 +33,7 @@ lint-fix: ## Lint & format, will try to fix errors and modify code
 
 ################################################################################
 image:  ## Build container image from Dockerfile
-	docker build  --file ./Dockerfile \
+	docker build  --file ./build/Dockerfile \
 	--build-arg BUILD_INFO="$(BUILD_INFO)" \
 	--build-arg VERSION="$(VERSION)" \
 	--tag $(IMAGE_PREFIX):$(IMAGE_TAG) . 
@@ -47,3 +47,8 @@ push:  ## Push container image to registry
 ################################################################################
 build:  ## Run a local build without a container
 	@echo "Not implemented yet!"
+
+
+################################################################################
+run:  ## Run locally and start all services & components
+	@scripts/run.sh
