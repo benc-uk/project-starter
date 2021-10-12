@@ -12,21 +12,20 @@ Put details of real API(s) here, or remove this section if it's not relevant to 
 
 The API is RESTful and supports the following operations
 
-```bash
-GET    /api/thing       - Get all things
-GET    /api/thing/{id}  - Get a single thing by id
-POST   /api/thing       - Create a new thing
-PUT    /api/thing/{id}  - Update thing with id
-DELETE /api/thing/{id}  - Delete thing with id
-```
+| Method | Path              | Description          | Input   | Returns          |
+| ------ | ----------------- | -------------------- | ------- | ---------------- |
+| GET    | /api/thing        | Get all things       | None    | Array of _Thing_ |
+| POST   | /api/thing        | Create a new thing   | _Thing_ | New _Thing_      |
+| PUT    | /api/thing/_{id}_ | Update thing with id | _Thing_ | Updated _Thing_  |
+| DELETE | /api/thing/_{id}_ | Delete thing with id | id      | Empty            |
 
 ### Status Codes
 
-- 200 - On GET, POST and PUT, body will contain the existing/updated entity in JSON (see below)
-- 204 - Upon successful deletion, no body will be returned
-- 400 - Invalid request, e.g. PUT or POST
-- 404 - The requested {id} was not found, no body will be returned
-- 500 - Something bad happened
+- **200** - On GET, POST and PUT, body will contain the existing/updated entity in JSON (see below)
+- **204** - Upon successful deletion, no body will be returned
+- **400** - Invalid request, e.g. PUT or POST
+- **404** - The requested {id} was not found, no body will be returned
+- **500** - Something bad happened
 
 JSON error object will be returned on 400 and 500 errors
 

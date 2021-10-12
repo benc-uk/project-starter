@@ -26,3 +26,7 @@ __pycache__
 *.pyc
 
 # Add more project specific folders here
+charts/
+build/
+deploy/
+samples/

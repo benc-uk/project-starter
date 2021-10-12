@@ -2,8 +2,10 @@
 
 After duplicating or using this template
 
+- `rm -rf .git`
 - Remove directories not required
 - Update readme
+- Update LICENSE date & name
 - Update makefile, and uncomment suggested commands
 - Update / remove contents of api directory
 - Edit .github/workflows

@@ -6,7 +6,7 @@
     // "es6": true,
     // "jest": true
   },
-  "extends": "eslint:recommended",
+  "extends": "eslint:recommended", // Do not use airbnb/standard/google
   "parserOptions": {
     "ecmaVersion": 12,
     "sourceType": "module"
@@ -17,6 +17,7 @@
     "no-unused-vars": "error",
     "no-var": "error",
     "no-this-before-super": "error",
-    "no-invalid-this": "error"
+    "no-invalid-this": "error",
+    "prefer-template": "error"
   }
 }
