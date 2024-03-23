@@ -14,6 +14,9 @@ env:
   IMAGE_NAME: __CHANGE_ME__
   IMAGE_TAG: latest
 
+permissions:
+  packages: write
+
 jobs:
   ci-build:
     name: Code Check & CI build

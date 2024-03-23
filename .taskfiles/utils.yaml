@@ -1,0 +1,30 @@
+version: '3'
+
+tasks:
+  check-var:
+    internal: true
+    desc: Check required variables
+    cmds:
+      - test {{.VAR_NAME}}
+
+  gh-release:
+    desc: Create a release on GitHub
+    #requires: [VERSION]
+    prompt: Are you sure you want to create a release for {{.VERSION}}?
+    cmds:
+      - >
+        gh release create "{{.VERSION}}" --title "v{{.VERSION}}" 
+        --notes-file docs/release-notes.md 
+        --latest 
+    preconditions:
+      - sh: '{{ if not .VERSION }} exit 1; {{ end }}'
+        msg: Required variable not set VERSION
+      - sh: 'test -f docs/release-notes.md'
+        msg: Release notes not found
+
+  helm-package:
+    desc: Package up Helm chart
+    cmds:
+      - helm-docs --chart-search-root deploy/helm
+      - helm package deploy/helm/nanoproxy -d deploy/helm
+      - helm repo index deploy/helm

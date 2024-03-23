@@ -1,0 +1,39 @@
+version: "3"
+
+vars:
+  # You'll want to override these variables in 90% of cases
+  CONTEXT_DIR: '{{ .CONTEXT_DIR | default "." }}'
+  DOCKERFILE: '{{ .DOCKERFILE | default "./Dockerfile" }}'
+  IMAGE_TAG: '{{ .IMAGE_TAG | default "latest" }}'
+  IMAGE_REG: '{{ .IMAGE_REG | default "ghcr.io" }}'
+
+tasks:
+
+  # This wrapper task is used to build docker images
+  # ==========================================================================
+  # Note it will attempt to pass in VERSION and BUILD_INFO as build args
+  # If the Dockerfile does not use these variables, it will not cause an error
+  build:
+    desc: Build docker image
+    #requires: [IMAGE_NAME]
+    cmds:
+      - >
+        docker build {{.CONTEXT_DIR}} --file {{.DOCKERFILE}}
+        --tag {{.IMAGE_REG}}/{{.IMAGE_NAME}}{{.IMAGE_SUFFIX}}:{{.IMAGE_TAG}}
+        --build-arg VERSION={{.VERSION}}
+        --build-arg BUILD_INFO={{.BUILD_INFO}}
+    preconditions:
+      - sh:  '{{ if not .IMAGE_NAME }} exit 1; {{ end }}'
+        msg: Required variable not set IMAGE_NAME
+
+  # This wrapper task is used to push docker images
+  # ==========================================================================
+  push:
+    desc: Push docker image
+    #requires: [IMAGE_NAME]
+    cmds:
+      - >
+        docker push {{.IMAGE_REG}}/{{.IMAGE_NAME}}{{.IMAGE_SUFFIX}}:{{.IMAGE_TAG}}
+    preconditions:
+      - sh:  '{{ if not .IMAGE_NAME }} exit 1; {{ end }}'
+        msg: Required variable not set IMAGE_NAME

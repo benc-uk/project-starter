@@ -1,0 +1,47 @@
+# ===================================================================================
+# === Stage 1: Build the service ====================================================
+# ===================================================================================
+FROM golang:1.20-alpine as go-build
+
+# Note these are ALWAYS passed in, so the values here are never used
+ARG VERSION="0.0.0"
+ARG BUILD_INFO="Not provided"
+ARG CGO_ENABLED=0
+
+WORKDIR /build
+
+# Install system dependencies, if CGO_ENABLED=1
+RUN if [[ $CGO_ENABLED -eq 1 ]]; then apk update && apk add gcc musl-dev; fi
+
+# We need root certs to make HTTPS calls (remove if not making HTTPS calls in code)
+RUN apk add --no-cache ca-certificates
+
+# Fetch and cache Go modules
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+
+# Copy in Go source files
+COPY BLAH ./BLAH/
+
+# Now run the build
+# Inject version and build details, to be available at runtime 
+RUN GO111MODULE=on CGO_ENABLED=$CGO_ENABLED GOOS=linux \
+  go build \
+  -ldflags "-X main.version=$VERSION -X 'main.buildInfo=$BUILD_INFO'" \
+  -o service __CHANGE_ME_PKG_NAME__
+
+# ================================================================================================
+# === Stage 2: Get binary into a lightweight container ===========================================
+# ================================================================================================
+FROM scratch
+WORKDIR /app 
+
+# Copy the Go server binary
+COPY --from=go-build service . 
+
+# And root certs too (remove if not needed)
+COPY --from=go-build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+
+# That's it! Just run the server 
+CMD [ "./service"]

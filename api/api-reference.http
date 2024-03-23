@@ -1,0 +1,43 @@
+@endpoint = http://localhost:8000/api
+
+##########################################
+### Get all things
+##########################################
+GET {{endpoint}}/things
+
+
+##########################################
+### Create a thing
+##########################################
+# @name create
+POST {{endpoint}}/things
+Content-Type: application/json
+
+{
+  "name": "Test {{$randomInt 1 1000}}"
+}
+
+
+##########################################
+### Get single thing
+##########################################
+GET {{endpoint}}/things/{{ create.response.body.id }}
+
+
+##########################################
+### Delete single thing
+##########################################
+DELETE {{endpoint}}/things/{{ create.response.body.id }}
+
+
+##########################################
+### Update a thing
+##########################################
+PUT {{endpoint}}/things/{{ create.response.body.id }}
+Content-Type: application/json
+
+{
+  "name": "Test {{$randomInt 1 1000}}",
+  "somethingElse": "hello"
+}
+
