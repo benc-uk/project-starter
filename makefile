@@ -6,12 +6,13 @@ export
 export
 
 # Internal variables you don't want to change
+REPO_ROOT := $(shell git rev-parse --show-toplevel)
 SHELL := /bin/bash
+
 SRC_DIR := ./src
-REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-GOLINT_PATH := $(REPO_DIR)/.tools/golangci-lint              # Remove if not using Go
-AIR_PATH := $(REPO_DIR)/.tools/air                           # Remove if not using Go
-BS_PATH := $(REPO_DIR)/.tools/node_modules/.bin/browser-sync # Remove if local server not needed
+GOLINT_PATH := $(REPO_ROOT)/.tools/golangci-lint              # Remove if not using Go
+AIR_PATH := $(REPO_ROOT)/.tools/air                           # Remove if not using Go
+BS_PATH := $(REPO_ROOT)/.tools/node_modules/.bin/browser-sync # Remove if local server not needed
 
 .EXPORT_ALL_VARIABLES:
 .PHONY: help image push build run lint lint-fix
@@ -24,7 +25,7 @@ help: ## 💬 This help message :)
 install-tools: ## 🔮 Install dev tools into project .tools directory
 	@figlet $@ || true
 	@$(GOLINT_PATH) > /dev/null 2>&1 || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b ./.tools/
-	@$(AIR_PATH) -v > /dev/null 2>&1 || ( wget https://github.com/cosmtrek/air/releases/download/v1.42.0/air_1.42.0_linux_amd64 -q -O .tools/air && chmod +x .tools/air )
+	@$(AIR_PATH) -v > /dev/null 2>&1 || ( wget https://github.com/cosmtrek/air/releases/download/v1.51.0/air_1.51.0_linux_amd64 -q -O .tools/air && chmod +x .tools/air )
 	@$(BS_PATH) -v > /dev/null 2>&1 || npm install --prefix ./.tools browser-sync
 	
 lint: ## 🔍 Lint & format check only, sets exit code on error for CI
